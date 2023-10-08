@@ -1,10 +1,10 @@
 import numpy as np
-import gym
-from gym import spaces
-from gym.utils import seeding
+import gymnasium
+from gymnasium import spaces
+from gymnasium.utils import seeding
 
 
-class BanditEnv(gym.Env):
+class BanditEnv(gymnasium.Env):
     """
     Bandit environment base to allow agents to interact with the class n-armed bandit
     in different variations
@@ -51,10 +51,17 @@ class BanditEnv(gym.Env):
             else:
                 reward = np.random.normal(self.r_dist[action][0], self.r_dist[action][1])
 
-        return 0, reward, done, {}
+        return 0, reward, done, False, {}
 
-    def reset(self):
-        return 0
+    def reset(self, seed=None, options=None):
+        """
+        Warnings
+        UserWarning: WARN: The obs returned by the `reset()` method should be an int or np.int64, actual type: <class 'gymnasium.spaces.discrete.Discrete'>
+        logger.warn(f"{pre} should be an int or np.int64, actual type: {type(obs)}")
+        /Users/mark.cortejo/Documents/Projects/Personal/OpenAI Gym/lib/python3.11/site-packages/gymnasium/utils/passive_env_checker.py:159: UserWarning: WARN: The obs returned by the `reset()` method is not within the observation space.
+        logger.warn(f"{pre} is not within the observation space.")
+        """
+        return (0, {}) #TODO: Temporary fix for gymnasium's warning. Check what should be the actual value
 
     def render(self, mode='human', close=False):
         pass
