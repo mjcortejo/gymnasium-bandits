@@ -1,5 +1,13 @@
 # Bandit Environments
 
+### Fork Note
+This fork is a gymnasium reimplementation of JKCooper2's gym-bandits.
+
+Original repository is [here](git@github.com:mjcortejo/gymnasium-bandits.git)
+
+Credits to JKCooper2 for the original implementation.
+
+### Description
 Series of n-armed bandit environments for the OpenAI Gym
 
 Each env uses a different set of:
